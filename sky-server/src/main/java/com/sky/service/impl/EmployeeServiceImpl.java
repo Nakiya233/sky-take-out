@@ -16,6 +16,7 @@ import com.sky.exception.PasswordErrorException;
 import com.sky.mapper.EmployeeMapper;
 import com.sky.result.PageResult;
 import com.sky.service.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ import org.springframework.util.DigestUtils;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -32,7 +34,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     /**
      * 员工登录
-     *
      * @param employeeLoginDTO
      * @return
      */
@@ -97,7 +98,6 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param employeePageQueryDTO
      * @return
      */
-    @Override
     public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
         //开始分页查询
         PageHelper.startPage(employeePageQueryDTO.getPage(), employeePageQueryDTO.getPageSize());
@@ -109,4 +109,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return new PageResult(total, records);
     }
+
+    /**
+     * 禁用或开启员工
+     * @param status
+     * @param id
+     */
+    public void stopOrStart(Integer status, Long id) {
+        //Employee employee = new Employee();
+
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .updateTime(LocalDateTime.now())
+                .build();
+
+        employeeMapper.update(employee);
+    }
 }
+
+

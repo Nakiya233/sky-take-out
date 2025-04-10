@@ -58,9 +58,9 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
         }
     }
 
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        //请求完成清除id
-        BaseContext.removeCurrentId();
-    }
+//    @Override
+//    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+//        //请求完成清除id
+//        BaseContext.removeCurrentId();
+//    }
 }
