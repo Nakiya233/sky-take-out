@@ -9,6 +9,13 @@ import com.sky.result.PageResult;
 public interface EmployeeService {
 
     /**
+     * 根据id查询员工
+     * @param id
+     * @return
+     */
+    Employee getById(Long id);
+
+    /**
      * 员工登录
      * @param employeeLoginDTO
      * @return
@@ -34,4 +41,10 @@ public interface EmployeeService {
      * @param id
      */
     void stopOrStart(Integer status, Long id);
+
+    /**
+     * 编辑员工信息
+     * @param employeeDTO
+     */
+    void update(EmployeeDTO employeeDTO);
 }
