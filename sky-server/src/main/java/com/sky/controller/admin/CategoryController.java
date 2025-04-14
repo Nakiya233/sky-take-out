@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/admin/category")
 @Slf4j
@@ -56,11 +58,11 @@ public class CategoryController {
         return Result.success();
     }
 
-    // 没用 写勾吧
     @GetMapping("/list")
     @ApiOperation("根据类型查询分类")
-    public Result<Category> getByType(Long id) {
-        return null;
+    public Result<List<Category>> getByType(Integer type) {
+        List<Category> list = categoryService.getByType(type);
+        return Result.success(list);
     }
 
 
